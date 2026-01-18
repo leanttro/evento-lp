@@ -355,6 +355,53 @@
             font-weight: 600;
         }
 
+        /* --- FORM STYLES --- */
+        .lp-form-container {
+            max-width: 600px;
+            margin: 3rem auto 0;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .form-group {
+            display: flex; flex-direction: column; text-align: left;
+        }
+        .form-group.full { grid-column: span 2; }
+        
+        .form-label {
+            font-size: 0.8rem;
+            color: var(--gold-primary);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .form-input {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            color: white;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: var(--gold-primary);
+            background: rgba(0,0,0,0.6);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
+        }
+
         /* --- CALCULATOR --- */
         #configurador {
             background: linear-gradient(to bottom, #111, #000);
@@ -493,6 +540,10 @@
                 grid-template-columns: 1fr; 
             }
             
+            /* Form Mobile */
+            .form-grid { grid-template-columns: 1fr; }
+            .form-group.full { grid-column: span 1; }
+
             .calc-container { grid-template-columns: 1fr; }
             .gallery-grid { grid-template-columns: 1fr; }
             
@@ -703,6 +754,45 @@
         </div>
     </section>
 
+    <section id="capture-lead" style="background: linear-gradient(to bottom, #111, #0a0a0a);">
+        <div class="container text-center">
+            <div data-aos>
+                <h2 class="heading-lg">Sua Lista de Convidados Inteligente.</h2>
+                <p class="text-lead">
+                    Pare de anotar nomes em papéis soltos. Centralize sua lista e prepare-se para receber as confirmações.
+                </p>
+                
+                <div class="lp-form-container">
+                    <form id="leadForm">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label" for="nome">Nome</label>
+                                <input type="text" id="nome" name="nome" class="form-input" required placeholder="Seu nome">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="sobrenome">Sobrenome</label>
+                                <input type="text" id="sobrenome" name="sobrenome" class="form-input" required placeholder="Seu sobrenome">
+                            </div>
+                        </div>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label" for="email">E-mail</label>
+                                <input type="email" id="email" name="email" class="form-input" required placeholder="seu@email.com">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="whatsapp">WhatsApp</label>
+                                <input type="tel" id="whatsapp" name="whatsapp" class="form-input" required placeholder="(11) 99999-9999">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width: 100%; border-radius: 8px; clip-path: none;">Começar Agora Grátis!</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="configurador">
         <div class="container">
             <div class="text-center" style="margin-bottom: 5rem;" data-aos>
@@ -822,6 +912,53 @@
                 btn.classList.add('fa-times');
             }
         }
+
+        // --- DIRECTUS FORM SUBMISSION ---
+        document.getElementById('leadForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('button[type="submit"]');
+            const originalText = btn.innerText;
+            
+            // UI Loading State
+            btn.innerText = 'Processando...';
+            btn.style.opacity = '0.7';
+            btn.disabled = true;
+
+            const data = {
+                nome: document.getElementById('nome').value,
+                sobrenome: document.getElementById('sobrenome').value,
+                email: document.getElementById('email').value,
+                whatsapp: document.getElementById('whatsapp').value
+            };
+
+            try {
+                // Endpoint Directus - POST /items/formulario_lp
+                const response = await fetch('https://eventosdirectus.leanttro.com/items/formulario_lp', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    alert('Cadastro realizado com sucesso! Em breve entraremos em contato.');
+                    this.reset();
+                } else {
+                    const errorData = await response.json();
+                    console.error('Erro Directus:', errorData);
+                    alert('Ocorreu um erro ao enviar. Por favor, tente novamente.');
+                }
+            } catch (error) {
+                console.error('Erro de conexão:', error);
+                alert('Erro de conexão. Verifique sua internet.');
+            } finally {
+                // Restore UI
+                btn.innerText = originalText;
+                btn.style.opacity = '1';
+                btn.disabled = false;
+            }
+        });
 
         // --- LÓGICA DE ORÇAMENTO (MANTIDA) ---
         const BASE_SETUP = 399.00;
