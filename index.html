@@ -504,7 +504,6 @@
             background: #050505; color: #555; padding: 4rem 0;
             text-align: center; border-top: 1px solid #111;
         }
-        /* Adjusted footer logo styles */
         .footer-logo-link {
             text-decoration: none;
             display: inline-flex;
@@ -557,6 +556,35 @@
             color: white;
         }
 
+        /* --- MUSIC FLOAT --- */
+        .music-float {
+            position: fixed;
+            width: 50px;
+            height: 50px;
+            bottom: 30px;
+            left: 30px;
+            background-color: var(--gold-primary);
+            color: #000;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
+            transition: 0.3s;
+        }
+        .music-float:hover {
+            transform: scale(1.1);
+            background-color: var(--gold-light);
+        }
+        .music-float.muted i::before {
+            content: "\f6a9"; /* FontAwesome mute icon */
+        }
+
         /* --- UTILS --- */
         .list-check li { margin-bottom: 15px; color: #ccc; display: flex; align-items: center; }
         .list-check i { color: var(--gold-primary); margin-right: 15px; }
@@ -566,101 +594,37 @@
            ========================================================================== 
         */
         @media (max-width: 900px) {
-            /* Typography Fixes */
-            .heading-xl { 
-                font-size: 2.3rem; 
-                line-height: 1.2; 
-                letter-spacing: 0; 
-                word-wrap: break-word;
-            }
-            .heading-lg { 
-                font-size: 1.8rem; 
-                letter-spacing: 1px;
-            }
-            
-            /* Layout Adjustments */
+            .heading-xl { font-size: 2.3rem; line-height: 1.2; letter-spacing: 0; word-wrap: break-word; }
+            .heading-lg { font-size: 1.8rem; letter-spacing: 1px; }
             section { padding: 4rem 0; }
             .container { padding: 0 1rem; }
-
-            /* Manter Fundo Preto no Mobile como pedido */
-            #intro-video { 
-                background: #000; 
-                padding: 120px 0 2rem 0;
-            }
-            
-            /* Admin Glass - Fix Cut Off */
+            #intro-video { background: #000; padding: 120px 0 2rem 0; }
             .admin-showcase { grid-template-columns: 1fr; }
-            .admin-glass {
-                padding: 1.5rem; 
-                width: 100%;
-                overflow: hidden; 
-            }
-            
-            /* Stats Grid Fix for Mobile */
-            .stats-grid {
-                gap: 5px; 
-            }
-            .stat-box {
-                padding: 0.8rem 0.2rem; 
-            }
+            .admin-glass { padding: 1.5rem; width: 100%; overflow: hidden; }
+            .stats-grid { gap: 5px; }
+            .stat-box { padding: 0.8rem 0.2rem; }
             .stat-val { font-size: 1.4rem; } 
             .stat-label { font-size: 0.6rem; letter-spacing: 0; } 
-
-            /* Feature Grid */
-            .feature-grid {
-                grid-template-columns: 1fr; 
-            }
-            
-            /* Form Mobile */
+            .feature-grid { grid-template-columns: 1fr; }
             .form-grid { grid-template-columns: 1fr; }
             .form-group.full { grid-column: span 1; }
             #capture-lead { padding-top: 2rem; } 
-            
-            /* Diferenciais Mobile */
-            #diferenciais { 
-                padding-top: 2rem; 
-                padding-bottom: 2rem; 
-            }
-
+            #diferenciais { padding-top: 2rem; padding-bottom: 2rem; }
             .calc-container { grid-template-columns: 1fr; }
             .gallery-grid { grid-template-columns: 1fr; }
-            
-            /* Hero Fixes */
-            #hero { 
-                background-attachment: scroll; 
-                background-position: center top;
-                min-height: 100svh;
-                padding-top: 80px; 
-            }
+            #hero { background-attachment: scroll; background-position: center top; min-height: 100svh; padding-top: 80px; }
             .mockup-container { margin-top: 3rem; }
-            
-            /* Gallery Items Shorter on Mobile */
             .gallery-item { height: 300px; }
-            
-            /* Calculator Mobile */
             #configurador { padding-top: 2rem; } 
             .calc-controls { padding: 2rem 1.5rem; }
             .calc-info { padding: 3rem 1.5rem; min-height: 400px; }
             .total-area { padding: 1.5rem; }
-            
-            /* Hide Desktop, Show Mobile Toggle */
             .desktop-nav { display: none; }
             .mobile-toggle { display: block; }
-
-            /* Buttons Stack */
-            #hero .btn {
-                width: 100%;
-                display: block;
-                margin-bottom: 10px;
-                text-align: center;
-            }
-            #hero > div > div > div[style*="flex"] {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
+            #hero .btn { width: 100%; display: block; margin-bottom: 10px; text-align: center; }
+            #hero > div > div > div[style*="flex"] { flex-direction: column; gap: 0.5rem; }
         }
 
-        /* Animations */
         [data-aos] { opacity: 0; transform: translateY(30px); transition: 1s cubic-bezier(0.2, 0.8, 0.2, 1); }
         [data-aos].active { opacity: 1; transform: translateY(0); }
 
@@ -668,9 +632,13 @@
 </head>
 <body>
 
+    <audio id="bgMusic" loop>
+        <source src="https://res.cloudinary.com/dzcaxmbjn/video/upload/v1768765430/casamento_ijasxg.m4a" type="audio/mpeg">
+    </audio>
+
     <header>
         <div class="container header-inner">
-            <a href="#" class="logo">
+            <a href="https://www.leanttro.com/" class="logo">
                 <img src="https://res.cloudinary.com/dzcaxmbjn/image/upload/v1768760696/Design_sem_nome_96_qwylws.png" alt="Leanttro">
                 <span>FESTAS E EVENTOS</span>
             </a>
@@ -954,7 +922,6 @@
                             CONTRATAR AGORA
                         </button>
                         
-                        <!-- BOTÃO FECHAR NO SITE ADICIONADO -->
                         <a href="https://www.leanttro.com/" class="btn btn-outline" style="width: 100%; margin-top: 1rem; text-align: center; display: block; border-radius: 4px; padding: 1rem;">
                             FECHAR NO SITE
                         </a>
@@ -970,13 +937,11 @@
 
     <footer>
         <div class="container">
-            <!-- LOGO COLORIDO NO RODAPÉ COMO BOTÃO -->
             <a href="https://www.leanttro.com/" target="_blank" class="footer-logo-link">
                 <img src="https://res.cloudinary.com/dzcaxmbjn/image/upload/v1768760696/Design_sem_nome_96_qwylws.png" alt="Leanttro">
                 <span>FESTAS E EVENTOS</span>
             </a>
             
-            <!-- MENSAGEM SOBRE SERVIÇOS -->
             <div style="margin-bottom: 2.5rem; max-width: 800px; margin-left: auto; margin-right: auto;">
                 <p style="color: var(--gold-primary); font-size: 1rem; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; margin-bottom: 10px;">Impulsione seu negócio com Tecnologia</p>
                 <p style="color: var(--text-dim); font-size: 0.95rem; line-height: 1.6;">
@@ -994,12 +959,42 @@
         </div>
     </footer>
 
-    <!-- BOTÃO WHATSAPP FLUTUANTE -->
+    <button id="musicToggle" class="music-float">
+        <i class="fas fa-music"></i>
+    </button>
+
     <a href="https://wa.me/5511976232235?text=Olá! Tenho interesse em sites para festas e eventos." class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
 
     <script>
+        // --- AUDIO CONTROLLER ---
+        const audio = document.getElementById('bgMusic');
+        const musicBtn = document.getElementById('musicToggle');
+        let musicStarted = false;
+
+        function toggleMusic() {
+            if (audio.paused) {
+                audio.play();
+                musicBtn.classList.remove('muted');
+                musicBtn.querySelector('i').className = 'fas fa-music';
+            } else {
+                audio.pause();
+                musicBtn.classList.add('muted');
+                musicBtn.querySelector('i').className = 'fas fa-volume-mute';
+            }
+        }
+
+        musicBtn.addEventListener('click', toggleMusic);
+
+        // Tenta iniciar no primeiro clique em qualquer lugar (contornar bloqueio do navegador)
+        document.addEventListener('click', () => {
+            if (!musicStarted) {
+                audio.play().catch(() => { /* ignora erro de autoplay */ });
+                musicStarted = true;
+            }
+        }, { once: true });
+
         // --- MOBILE MENU TOGGLE ---
         function toggleMenu() {
             const menu = document.getElementById('mobileMenu');
@@ -1021,8 +1016,6 @@
             e.preventDefault();
             const btn = this.querySelector('button[type="submit"]');
             const originalText = btn.innerText;
-            
-            // UI Loading State
             btn.innerText = 'Processando...';
             btn.style.opacity = '0.7';
             btn.disabled = true;
@@ -1035,12 +1028,9 @@
             };
 
             try {
-                // Endpoint Directus - POST /items/formulario_lp
                 const response = await fetch('https://eventosdirectus.leanttro.com/items/formulario_lp', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data)
                 });
 
@@ -1048,22 +1038,18 @@
                     alert('Cadastro realizado com sucesso! Em breve entraremos em contato.');
                     this.reset();
                 } else {
-                    const errorData = await response.json();
-                    console.error('Erro Directus:', errorData);
                     alert('Ocorreu um erro ao enviar. Por favor, tente novamente.');
                 }
             } catch (error) {
-                console.error('Erro de conexão:', error);
                 alert('Erro de conexão. Verifique sua internet.');
             } finally {
-                // Restore UI
                 btn.innerText = originalText;
                 btn.style.opacity = '1';
                 btn.disabled = false;
             }
         });
 
-        // --- LÓGICA DE ORÇAMENTO (MANTIDA) ---
+        // --- LÓGICA DE ORÇAMENTO ---
         const BASE_SETUP = 399.00;
         const BASE_MONTHLY = 29.90;
 
@@ -1072,21 +1058,18 @@
             let totalMonthly = BASE_MONTHLY;
             let itemsSelected = [];
 
-            // Verifica QR Code
             const checkQR = document.getElementById('check-qr');
             if (checkQR.checked) {
                 totalSetup += parseFloat(checkQR.value);
                 itemsSelected.push("QR Code de Mesa");
             }
 
-            // Verifica Admin
             const checkAdmin = document.getElementById('check-admin');
             if (checkAdmin.checked) {
                 totalSetup += parseFloat(checkAdmin.value);
                 itemsSelected.push("Painel Admin");
             }
 
-            // Verifica IA (Soma Setup + Mensal)
             const checkIA = document.getElementById('check-ia');
             if (checkIA.checked) {
                 totalSetup += parseFloat(checkIA.value);
@@ -1094,7 +1077,6 @@
                 itemsSelected.push("Concierge IA");
             }
 
-            // Atualiza HTML
             const fmt = (val) => val.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
             
             document.getElementById('display-setup').innerText = fmt(totalSetup);
@@ -1103,7 +1085,6 @@
             const bigDisplay = document.getElementById('display-total-big');
             if(bigDisplay) bigDisplay.innerText = fmt(totalSetup);
 
-            // Atualiza Link do WhatsApp
             const btn = document.getElementById('btn-contratar');
             const msg = `Olá! Gostaria de contratar o pacote Casamento & Festa.` + 
                         (itemsSelected.length > 0 ? `\nAdicionais: ${itemsSelected.join(', ')}.` : ``) +
@@ -1116,7 +1097,6 @@
 
         updateTotal();
 
-        // --- ANIMATIONS ---
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
