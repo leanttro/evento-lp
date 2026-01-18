@@ -199,6 +199,14 @@
             border-color: white;
         }
 
+        /* --- INTRO VIDEO SECTION (COM FUNDO DE FLORES NO DESKTOP) --- */
+        #intro-video {
+            padding: 120px 0 4rem 0;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://static.vecteezy.com/ti/fotos-gratis/p2/26554736-fundo-de-flores-de-casamento-foto.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
         /* --- HERO --- */
         #hero {
             min-height: 100vh;
@@ -272,7 +280,12 @@
         .feature-desc { font-size: 0.95rem; color: var(--text-dim); }
 
         /* --- ADMIN SECTION --- */
-        #diferenciais { background: var(--bg-dark); border-top: 1px solid #222; }
+        #diferenciais { 
+            background: var(--bg-dark); 
+            border-top: 1px solid #222; 
+            padding-top: 4rem; 
+            padding-bottom: 4rem; /* Reduzido pela metade */
+        }
         
         .admin-showcase {
             display: grid;
@@ -405,6 +418,7 @@
         /* --- CALCULATOR --- */
         #configurador {
             background: linear-gradient(to bottom, #111, #000);
+            padding-top: 4rem; /* Reduzido pela metade */
             padding-bottom: 10rem;
         }
         
@@ -492,6 +506,32 @@
         }
         .footer-logo { font-family: var(--font-display); font-size: 2rem; color: #333; margin-bottom: 2rem; display: block;}
 
+        /* --- WHATSAPP FLOAT --- */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background-color: #128c7e;
+            color: white;
+        }
+
         /* --- UTILS --- */
         .list-check li { margin-bottom: 15px; color: #ccc; display: flex; align-items: center; }
         .list-check i { color: var(--gold-primary); margin-right: 15px; }
@@ -516,6 +556,12 @@
             /* Layout Adjustments */
             section { padding: 4rem 0; }
             .container { padding: 0 1rem; }
+
+            /* Manter Fundo Preto no Mobile como pedido */
+            #intro-video { 
+                background: #000; 
+                padding: 120px 0 2rem 0;
+            }
             
             /* Admin Glass - Fix Cut Off */
             .admin-showcase { grid-template-columns: 1fr; }
@@ -543,6 +589,13 @@
             /* Form Mobile */
             .form-grid { grid-template-columns: 1fr; }
             .form-group.full { grid-column: span 1; }
+            #capture-lead { padding-top: 2rem; } 
+            
+            /* Diferenciais Mobile */
+            #diferenciais { 
+                padding-top: 2rem; 
+                padding-bottom: 2rem; 
+            }
 
             .calc-container { grid-template-columns: 1fr; }
             .gallery-grid { grid-template-columns: 1fr; }
@@ -560,6 +613,7 @@
             .gallery-item { height: 300px; }
             
             /* Calculator Mobile */
+            #configurador { padding-top: 2rem; } 
             .calc-controls { padding: 2rem 1.5rem; }
             .calc-info { padding: 3rem 1.5rem; min-height: 400px; }
             .total-area { padding: 1.5rem; }
@@ -620,7 +674,7 @@
         </ul>
     </div>
 
-    <section id="intro-video" style="padding: 120px 0 2rem 0; background: #000;">
+    <section id="intro-video">
         <div class="container text-center">
             <div style="max-width: 400px; margin: 0 auto; border-radius: 20px; overflow: hidden; box-shadow: 0 0 40px rgba(212, 175, 55, 0.2); border: 1px solid rgba(255,255,255,0.1);">
                 <video width="100%" height="auto" autoplay muted loop playsinline controls style="display: block;">
@@ -754,7 +808,7 @@
         </div>
     </section>
 
-    <section id="capture-lead" style="background: linear-gradient(to bottom, #111, #0a0a0a);">
+    <section id="capture-lead" style="background: linear-gradient(to bottom, #111, #0a0a0a); padding-top: 4rem;">
         <div class="container text-center">
             <div data-aos>
                 <h2 class="heading-lg">Sua Lista de Convidados Inteligente.</h2>
@@ -896,6 +950,11 @@
         </div>
     </footer>
 
+    <!-- BOTÃO WHATSAPP FLUTUANTE -->
+    <a href="https://wa.me/5511976232235?text=Olá! Tenho interesse em sites para festas e eventos." class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
     <script>
         // --- MOBILE MENU TOGGLE ---
         function toggleMenu() {
@@ -916,7 +975,7 @@
         // --- DIRECTUS FORM SUBMISSION ---
         document.getElementById('leadForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            const btn = this.querySelector('button[type="submit"]');
+            const btn = this.querySelector('button[type=\"submit\"]');
             const originalText = btn.innerText;
             
             // UI Loading State
@@ -1003,8 +1062,8 @@
             // Atualiza Link do WhatsApp
             const btn = document.getElementById('btn-contratar');
             const msg = `Olá! Gostaria de contratar o pacote Casamento & Festa.` + 
-                        (itemsSelected.length > 0 ? `\nAdicionais: ${itemsSelected.join(', ')}.` : ``) +
-                        `\n\nTotal Setup: R$ ${totalSetup}\nMensal: R$ ${totalMonthly}`;
+                        (itemsSelected.length > 0 ? `\\nAdicionais: ${itemsSelected.join(', ')}.` : ``) +
+                        `\\n\\nTotal Setup: R$ ${totalSetup}\\nMensal: R$ ${totalMonthly}`;
             
             btn.onclick = function() {
                 window.open(`https://wa.me/5511976232235?text=${encodeURIComponent(msg)}`, '_blank');
