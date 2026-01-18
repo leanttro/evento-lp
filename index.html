@@ -6,7 +6,6 @@
     <title>Leanttro Eventos | Premium Experience</title>
     <meta name="description" content="Crie uma experiência digital inesquecível para seu evento. Site, RSVP Inteligente e Gestão Financeira.">
     
-    <!-- Fontes Premium -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Manrope:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -35,7 +34,7 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; overflow-x: hidden; } /* Previne scroll horizontal indesejado */
 
         body {
             font-family: var(--font-body);
@@ -213,7 +212,7 @@
             text-transform: uppercase; 
             letter-spacing: 3px;
             display: inline-block;
-            margin: 0 10px 20px;
+            margin: 0 5px 20px; /* Ajuste leve para evitar quebra feia */
             background: rgba(0,0,0,0.5);
             backdrop-filter: blur(5px);
         }
@@ -224,7 +223,7 @@
             position: relative;
             z-index: 10;
         }
-        /* Ajuste para o vídeo ficar responsivo e bonito */
+        
         .mockup-video {
             width: 100%;
             max-width: 900px;
@@ -287,6 +286,14 @@
             opacity: 0.2; z-index: -1;
         }
 
+        /* Nova Classe para a Grid de Estatísticas (Substitui o inline style) */
+        .stats-grid {
+            display: grid; 
+            grid-template-columns: 1fr 1fr 1fr; 
+            gap: 15px; 
+            margin-bottom: 30px;
+        }
+
         .stat-box {
             background: rgba(0,0,0,0.4);
             border: 1px solid rgba(255,255,255,0.05);
@@ -297,7 +304,7 @@
         .stat-val { font-size: 2rem; font-family: var(--font-display); color: var(--gold-primary); display: block; }
         .stat-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: #888; }
 
-        /* --- PORTFOLIO (CASES) ATUALIZADO --- */
+        /* --- PORTFOLIO (CASES) --- */
         #portfolio { background: #000; }
         .gallery-grid {
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
@@ -393,6 +400,7 @@
         
         .switch {
             position: relative; display: inline-block; width: 60px; height: 30px;
+            flex-shrink: 0; /* Impede que o switch seja esmagado */
         }
         .switch input { opacity: 0; width: 0; height: 0; }
         .slider {
@@ -432,25 +440,58 @@
         .list-check li { margin-bottom: 15px; color: #ccc; display: flex; align-items: center; }
         .list-check i { color: var(--gold-primary); margin-right: 15px; }
         
-        /* Mobile Breakpoints Atualizados */
+        /* ==========================================================================
+           CORREÇÕES DE RESPONSIVIDADE MOBILE (ATUALIZADO)
+           ========================================================================== 
+        */
         @media (max-width: 900px) {
-            /* Typography Scale */
-            .heading-xl { font-size: 2.8rem; line-height: 1.2; }
-            .heading-lg { font-size: 2rem; }
+            /* Typography Fixes */
+            .heading-xl { 
+                font-size: 2.3rem; /* Reduzido para caber "EXPERIÊNCIA" */
+                line-height: 1.2; 
+                letter-spacing: 0; /* IMPORTANTE: Remove espaçamento extra no mobile */
+                word-wrap: break-word;
+            }
+            .heading-lg { 
+                font-size: 1.8rem; 
+                letter-spacing: 1px;
+            }
             
             /* Layout Adjustments */
             section { padding: 4rem 0; }
-            .container { padding: 0 1.5rem; }
+            .container { padding: 0 1rem; /* Mais espaço útil lateral */ }
             
-            /* Grid Resets */
-            .admin-showcase, .calc-container { grid-template-columns: 1fr; }
+            /* Admin Glass - Fix Cut Off */
+            .admin-showcase { grid-template-columns: 1fr; }
+            .admin-glass {
+                padding: 1.5rem; /* Reduzido de 30px para caber melhor */
+                width: 100%;
+                overflow: hidden; /* Garante que nada vaze */
+            }
+            
+            /* Stats Grid Fix for Mobile */
+            .stats-grid {
+                gap: 5px; /* Gap menor para não quebrar */
+            }
+            .stat-box {
+                padding: 0.8rem 0.2rem; /* Padding interno menor */
+            }
+            .stat-val { font-size: 1.4rem; } /* Números menores */
+            .stat-label { font-size: 0.6rem; letter-spacing: 0; } /* Texto menor */
+
+            /* Feature Grid */
+            .feature-grid {
+                grid-template-columns: 1fr; /* Força 1 coluna se necessário */
+            }
+            
+            .calc-container { grid-template-columns: 1fr; }
             .gallery-grid { grid-template-columns: 1fr; }
             
             /* Hero Fixes */
             #hero { 
-                background-attachment: scroll; /* Fix para iOS */
+                background-attachment: scroll; 
                 background-position: center top;
-                min-height: 100svh; /* Small Viewport Height */
+                min-height: 100svh;
             }
             .mockup-container { margin-top: 3rem; }
             
@@ -465,6 +506,18 @@
             /* Hide Desktop, Show Mobile Toggle */
             .desktop-nav { display: none; }
             .mobile-toggle { display: block; }
+
+            /* Buttons Stack */
+            #hero .btn {
+                width: 100%;
+                display: block;
+                margin-bottom: 10px;
+                text-align: center;
+            }
+            #hero > div > div > div[style*="flex"] {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
         }
 
         /* Animations */
@@ -479,7 +532,6 @@
         <div class="container header-inner">
             <a href="#" class="logo">LEANTTRO <span>EVENTOS</span></a>
             
-            <!-- Desktop Navigation -->
             <nav class="desktop-nav">
                 <ul>
                     <li><a href="#diferenciais">Plataforma</a></li>
@@ -489,14 +541,12 @@
                 </ul>
             </nav>
 
-            <!-- Mobile Hamburger Button -->
             <button class="mobile-toggle" onclick="toggleMenu()">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
     </header>
 
-    <!-- Mobile Menu Overlay -->
     <div class="mobile-menu" id="mobileMenu">
         <ul>
             <li><a href="#diferenciais" onclick="toggleMenu()">Plataforma</a></li>
@@ -526,7 +576,6 @@
             </div>
 
             <div class="mockup-container" data-aos>
-                <!-- VIDEO INSERIDO AQUI NO LUGAR DA IMAGEM -->
                 <video class="mockup-video" autoplay muted loop playsinline>
                     <source src="https://res.cloudinary.com/dzcaxmbjn/video/upload/v1768747722/Design_sem_nome_3_lauaaz.mp4" type="video/mp4">
                     Seu navegador não suporta vídeos.
@@ -546,7 +595,7 @@
                         A maioria dos sites entrega apenas uma página estática. Nós entregamos um sistema. Com nosso Painel Administrativo (opcional), você tem controle total sem precisar de planilhas.
                     </p>
                     
-                    <div class="feature-grid" style="margin-top: 0; grid-template-columns: 1fr;">
+                    <div class="feature-grid" style="margin-top: 0;">
                         <div class="feature-card">
                             <i class="fas fa-check-circle feature-icon"></i>
                             <h3 class="feature-title">RSVP em Tempo Real</h3>
@@ -570,7 +619,7 @@
                         </div>
                     </div>
                     
-                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-bottom: 30px;">
+                    <div class="stats-grid">
                         <div class="stat-box">
                             <span class="stat-val">142</span>
                             <span class="stat-label">Confirmados</span>
@@ -603,10 +652,6 @@
 
     <section id="portfolio" style="padding: 0;">
         <div class="gallery-grid">
-            <!-- 
-               ITEM 1: Gabi & João
-               Imagem 93
-            -->
             <a href="https://gabiejoao.leanttro.com/" target="_blank" class="gallery-item">
                 <img src="https://res.cloudinary.com/dzcaxmbjn/image/upload/v1768746327/Design_sem_nome_93_kz0evj.png" alt="Casamento Gabi & João" class="gallery-img">
                 <div class="gallery-overlay">
@@ -615,9 +660,6 @@
                 </div>
             </a>
             
-            <!-- 
-               ITEM 2: Madu (Aniversário)
-            -->
             <a href="https://convitemadu.leanttro.com/" target="_blank" class="gallery-item">
                 <img src="https://res.cloudinary.com/dzcaxmbjn/image/upload/v1768746327/Design_sem_nome_92_iliddh.png" alt="1 Ano da Madu" class="gallery-img">
                 <div class="gallery-overlay">
@@ -626,10 +668,6 @@
                 </div>
             </a>
             
-            <!-- 
-               ITEM 3: Laís & Vitor
-               Imagem 91
-            -->
             <a href="https://laisevitor.leanttro.com/" target="_blank" class="gallery-item">
                 <img src="https://res.cloudinary.com/dzcaxmbjn/image/upload/v1768748104/Design_sem_nome_91_bwogsp.png" alt="Bodas Laís & Vitor" class="gallery-img">
                 <div class="gallery-overlay">
@@ -648,7 +686,6 @@
             </div>
 
             <div class="calc-container" data-aos>
-                <!-- Left Panel -->
                 <div class="calc-info">
                     <div class="calc-info-content">
                         <div style="color: var(--gold-primary); font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 1rem;">// PACOTE BASE</div>
@@ -670,7 +707,6 @@
                     </div>
                 </div>
 
-                <!-- Right Panel (Controls) -->
                 <div class="calc-controls">
                     <div style="margin-bottom: 3rem; color: #888; font-size: 0.9rem; letter-spacing: 1px;">// SELECIONE OS ADICIONAIS</div>
 
