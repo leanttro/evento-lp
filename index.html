@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leanttro Eventos | Premium Experience</title>
+    <meta name="description" content="Crie uma experiência digital inesquecível para seu evento. Site, RSVP Inteligente e Gestão Financeira.">
+    
+    <!-- Fontes Premium -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Manrope:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* --- DESIGN SYSTEM LUXURY --- */
+        :root {
+            --bg-deep: #0a0a0a;
+            --bg-dark: #121212;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            
+            --text-light: #F9F9F9;
+            --text-dim: #A0A0A0;
+            
+            --gold-primary: #D4AF37;
+            --gold-light: #F3E5AB;
+            --gold-gradient: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+            
+            --font-display: 'Cinzel', serif;
+            --font-body: 'Manrope', sans-serif;
+            
+            --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-deep);
+            color: var(--text-light);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* --- TIPOGRAFIA --- */
+        h1, h2, h3 {
+            font-family: var(--font-display);
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .heading-xl { 
+            font-size: clamp(2.5rem, 6vw, 5rem); 
+            line-height: 1.1; 
+            margin-bottom: 2rem;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+
+        .heading-lg { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem; }
+        
+        .text-lead { 
+            font-size: 1.2rem; 
+            color: var(--text-dim); 
+            font-weight: 300; 
+            max-width: 700px; 
+            margin: 0 auto; 
+        }
+
+        .text-gold { color: var(--gold-primary); font-weight: 600; }
+
+        /* --- LAYOUT --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        section { padding: 8rem 0; position: relative; overflow: hidden; }
+        .text-center { text-align: center; }
+        
+        /* Background Effects */
+        .bg-glow {
+            position: absolute;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* --- HEADER --- */
+        header {
+            position: fixed; top: 0; left: 0; width: 100%;
+            padding: 1.5rem 0;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            border-bottom: var(--glass-border);
+        }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; }
+        
+        .logo { 
+            font-family: var(--font-display); 
+            font-size: 1.5rem; 
+            color: white; 
+            text-decoration: none; 
+            letter-spacing: 3px;
+            font-weight: 700;
+        }
+        .logo span { color: var(--gold-primary); }
+        
+        /* Desktop Nav */
+        .desktop-nav ul { display: flex; list-style: none; gap: 3rem; align-items: center; }
+        .desktop-nav a { 
+            text-decoration: none; color: var(--text-dim); 
+            font-size: 0.85rem; font-weight: 600; 
+            transition: 0.3s; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .desktop-nav a:hover { color: var(--gold-primary); }
+
+        /* Mobile Nav Toggle */
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--gold-primary);
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 80px; /* Altura do header */
+            left: 0;
+            width: 100%;
+            background: #0a0a0a;
+            padding: 2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            transform: translateY(-150%);
+            transition: transform 0.4s ease;
+            z-index: 999;
+            text-align: center;
+        }
+        .mobile-menu.active { transform: translateY(0); }
+        .mobile-menu ul { list-style: none; display: flex; flex-direction: column; gap: 2rem; }
+        .mobile-menu a {
+            text-decoration: none; color: white;
+            font-size: 1.1rem; text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* --- BUTTONS --- */
+        .btn {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+            border: none;
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+        }
+        
+        .btn-primary { 
+            background: var(--gold-gradient);
+            color: #000;
+        }
+        .btn-primary:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+        }
+        
+        .btn-outline { 
+            background: transparent; 
+            color: var(--gold-primary); 
+            border: 1px solid var(--gold-primary);
+            clip-path: none;
+            border-radius: 4px;
+        }
+        .btn-outline:hover { 
+            background: rgba(212, 175, 55, 0.1); 
+            color: white; 
+            border-color: white;
+        }
+
+        /* --- HERO --- */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+        
+        .badge { 
+            padding: 0.5rem 1.5rem; 
+            border: 1px solid var(--gold-primary); 
+            color: var(--gold-primary); 
+            font-size: 0.7rem; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            letter-spacing: 3px;
+            display: inline-block;
+            margin: 0 10px 20px;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        /* --- MOCKUP DEVICE --- */
+        .mockup-container {
+            margin-top: 5rem;
+            position: relative;
+            z-index: 10;
+        }
+        /* Ajuste para o vídeo ficar responsivo e bonito */
+        .mockup-video {
+            width: 100%;
+            max-width: 900px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            display: block;
+        }
+
+        /* --- FEATURES GRID --- */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+        .feature-card {
+            background: var(--bg-card);
+            border: var(--glass-border);
+            padding: 3rem 2rem;
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+        .feature-card::before {
+            content: '';
+            position: absolute; top: 0; left: 0; width: 3px; height: 0;
+            background: var(--gold-primary);
+            transition: 0.4s;
+        }
+        .feature-card:hover { transform: translateY(-10px); background: rgba(255,255,255,0.05); }
+        .feature-card:hover::before { height: 100%; }
+        
+        .feature-icon { font-size: 2rem; color: var(--gold-primary); margin-bottom: 1.5rem; }
+        .feature-title { font-size: 1.2rem; margin-bottom: 1rem; color: white; font-family: var(--font-display); }
+        .feature-desc { font-size: 0.95rem; color: var(--text-dim); }
+
+        /* --- ADMIN SECTION --- */
+        #diferenciais { background: var(--bg-dark); border-top: 1px solid #222; }
+        
+        .admin-showcase {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .admin-glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+        }
+        .admin-glass::after {
+            content: ''; position: absolute; top: -20px; right: -20px;
+            width: 100px; height: 100px;
+            background: radial-gradient(circle, var(--gold-primary) 0%, transparent 70%);
+            opacity: 0.2; z-index: -1;
+        }
+
+        .stat-box {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .stat-val { font-size: 2rem; font-family: var(--font-display); color: var(--gold-primary); display: block; }
+        .stat-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: #888; }
+
+        /* --- PORTFOLIO (CASES) ATUALIZADO --- */
+        #portfolio { background: #000; }
+        .gallery-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+        }
+        .gallery-item {
+            position: relative; height: 450px; overflow: hidden; display: block;
+            text-decoration: none;
+        }
+        .gallery-img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.8s ease;
+            filter: none; 
+        }
+        .gallery-item:hover .gallery-img { transform: scale(1.05); }
+        
+        .gallery-overlay {
+            position: absolute; 
+            bottom: 0; left: 0; width: 100%; height: 50%;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            display: flex; flex-direction: column;
+            justify-content: flex-end; align-items: center;
+            padding-bottom: 3rem;
+            opacity: 1;
+            transition: 0.4s;
+        }
+        
+        .gallery-title { 
+            font-family: var(--font-display); 
+            font-size: 1.5rem; 
+            color: white; 
+            margin-bottom: 0.5rem; 
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        .gallery-link-text {
+            font-size: 0.8rem;
+            color: var(--gold-primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        /* --- CALCULATOR --- */
+        #configurador {
+            background: linear-gradient(to bottom, #111, #000);
+            padding-bottom: 10rem;
+        }
+        
+        .calc-container {
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 30px;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            box-shadow: 0 50px 100px rgba(0,0,0,0.5);
+        }
+
+        .calc-info {
+            background: url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            position: relative;
+            padding: 4rem 3rem;
+            color: white;
+            display: flex; flex-direction: column; justify-content: space-between;
+        }
+        
+        .calc-info::before {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(0,0,0,0.4));
+            z-index: 1;
+        }
+        
+        .calc-info-content { position: relative; z-index: 5; }
+
+        .base-price-display {
+            border-top: 1px solid rgba(255,255,255,0.3);
+            padding-top: 20px;
+            margin-top: 30px;
+            position: relative; 
+            z-index: 5;
+        }
+
+        .calc-controls { padding: 4rem; }
+
+        /* Modern Toggle Switches */
+        .option-row {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .option-row:last-child { border-bottom: none; }
+        
+        .switch {
+            position: relative; display: inline-block; width: 60px; height: 30px;
+        }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider {
+            position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #333; transition: .4s; border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute; content: ""; height: 22px; width: 22px;
+            left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%;
+        }
+        input:checked + .slider { background-color: var(--gold-primary); }
+        input:checked + .slider:before { transform: translateX(30px); }
+
+        .option-details { flex: 1; padding-right: 20px; }
+        .option-title { display: block; font-weight: 700; font-size: 1.1rem; color: white; margin-bottom: 5px; }
+        .option-price { color: var(--gold-primary); font-size: 0.9rem; }
+
+        /* Totals Area */
+        .total-area {
+            background: rgba(255,255,255,0.02);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+        .total-line { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 1.1rem; color: #aaa; }
+        .total-line.final { font-size: 1.8rem; color: white; margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-family: var(--font-display); }
+        .total-line.final span { color: var(--gold-primary); }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #050505; color: #555; padding: 4rem 0;
+            text-align: center; border-top: 1px solid #111;
+        }
+        .footer-logo { font-family: var(--font-display); font-size: 2rem; color: #333; margin-bottom: 2rem; display: block;}
+
+        /* --- UTILS --- */
+        .list-check li { margin-bottom: 15px; color: #ccc; display: flex; align-items: center; }
+        .list-check i { color: var(--gold-primary); margin-right: 15px; }
+        
+        /* Mobile Breakpoints Atualizados */
+        @media (max-width: 900px) {
+            /* Typography Scale */
+            .heading-xl { font-size: 2.8rem; line-height: 1.2; }
+            .heading-lg { font-size: 2rem; }
+            
+            /* Layout Adjustments */
+            section { padding: 4rem 0; }
+            .container { padding: 0 1.5rem; }
+            
+            /* Grid Resets */
+            .admin-showcase, .calc-container { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: 1fr; }
+            
+            /* Hero Fixes */
+            #hero { 
+                background-attachment: scroll; /* Fix para iOS */
+                background-position: center top;
+                min-height: 100svh; /* Small Viewport Height */
+            }
+            .mockup-container { margin-top: 3rem; }
+            
+            /* Gallery Items Shorter on Mobile */
+            .gallery-item { height: 300px; }
+            
+            /* Calculator Mobile */
+            .calc-controls { padding: 2rem 1.5rem; }
+            .calc-info { padding: 3rem 1.5rem; min-height: 400px; }
+            .total-area { padding: 1.5rem; }
+            
+            /* Hide Desktop, Show Mobile Toggle */
+            .desktop-nav { display: none; }
+            .mobile-toggle { display: block; }
+        }
+
+        /* Animations */
+        [data-aos] { opacity: 0; transform: translateY(30px); transition: 1s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        [data-aos].active { opacity: 1; transform: translateY(0); }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <a href="#" class="logo">LEANTTRO <span>EVENTOS</span></a>
+            
+            <!-- Desktop Navigation -->
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="#diferenciais">Plataforma</a></li>
+                    <li><a href="#portfolio">Portfólio</a></li>
+                    <li><a href="#configurador">Orçamento</a></li>
+                    <li><a href="https://wa.me/5511976232235" class="btn btn-primary" style="padding: 0.8rem 2rem; font-size: 0.8rem;">Falar no WhatsApp</a></li>
+                </ul>
+            </nav>
+
+            <!-- Mobile Hamburger Button -->
+            <button class="mobile-toggle" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="#diferenciais" onclick="toggleMenu()">Plataforma</a></li>
+            <li><a href="#portfolio" onclick="toggleMenu()">Portfólio</a></li>
+            <li><a href="#configurador" onclick="toggleMenu()">Orçamento</a></li>
+            <li><a href="https://wa.me/5511976232235" class="btn btn-primary" onclick="toggleMenu()">WhatsApp</a></li>
+        </ul>
+    </div>
+
+    <section id="hero">
+        <div class="bg-glow" style="top: 20%; left: 10%;"></div>
+        <div class="container text-center" style="position: relative; z-index: 2;">
+            <div data-aos>
+                <div style="margin-bottom: 2rem;">
+                    <span class="badge">Gestão de Convidados</span>
+                    <span class="badge">Lista Pix</span>
+                    <span class="badge">Chatbot Inteligente</span>
+                </div>
+                <h1 class="heading-xl">Não faça apenas um site.<br>Crie uma Experiência.</h1>
+                <p class="text-lead">
+                    A primeira plataforma que une um site de casamento elegante, um painel de gestão para os noivos e uma assistente virtual para os convidados.
+                </p>
+                <div style="margin-top: 3rem; display: flex; gap: 1.5rem; justify-content: center;">
+                    <a href="#configurador" class="btn btn-primary">Configurar Meu Pacote</a>
+                    <a href="#portfolio" class="btn btn-outline">Ver Exemplos Reais</a>
+                </div>
+            </div>
+
+            <div class="mockup-container" data-aos>
+                <!-- VIDEO INSERIDO AQUI NO LUGAR DA IMAGEM -->
+                <video class="mockup-video" autoplay muted loop playsinline>
+                    <source src="https://res.cloudinary.com/dzcaxmbjn/video/upload/v1768747722/Design_sem_nome_3_lauaaz.mp4" type="video/mp4">
+                    Seu navegador não suporta vídeos.
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <section id="diferenciais">
+        <div class="bg-glow" style="bottom: 0; right: 0; width: 800px; height: 800px; opacity: 0.1;"></div>
+        <div class="container">
+            <div class="admin-showcase">
+                <div data-aos>
+                    <span class="text-gold" style="letter-spacing: 2px; text-transform: uppercase;">Tecnologia Exclusiva</span>
+                    <h2 class="heading-lg" style="margin-top: 1rem;">Você no comando<br>do seu evento.</h2>
+                    <p class="text-lead" style="text-align: left; margin: 0 0 2.5rem 0;">
+                        A maioria dos sites entrega apenas uma página estática. Nós entregamos um sistema. Com nosso Painel Administrativo (opcional), você tem controle total sem precisar de planilhas.
+                    </p>
+                    
+                    <div class="feature-grid" style="margin-top: 0; grid-template-columns: 1fr;">
+                        <div class="feature-card">
+                            <i class="fas fa-check-circle feature-icon"></i>
+                            <h3 class="feature-title">RSVP em Tempo Real</h3>
+                            <p class="feature-desc">Saiba exatamente quem vai e quem não vai. Atualização instantânea no seu painel.</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-wallet feature-icon"></i>
+                            <h3 class="feature-title">Gestão Financeira</h3>
+                            <p class="feature-desc">Receba presentes em dinheiro direto no PIX, sem taxas de intermediários.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="admin-glass" data-aos>
+                    <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px; margin-bottom: 20px;">
+                        <span style="font-weight:bold; color:white; font-family: var(--font-display);">PAINEL ADMIN</span>
+                        <div style="display:flex; gap: 5px;">
+                            <span style="width:10px; height:10px; background: #FF5F56; border-radius:50%;"></span>
+                            <span style="width:10px; height:10px; background: #FFBD2E; border-radius:50%;"></span>
+                            <span style="width:10px; height:10px; background: #27C93F; border-radius:50%;"></span>
+                        </div>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-bottom: 30px;">
+                        <div class="stat-box">
+                            <span class="stat-val">142</span>
+                            <span class="stat-label">Confirmados</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-val">5k</span>
+                            <span class="stat-label">Presentes</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-val">12</span>
+                            <span class="stat-label">Recados</span>
+                        </div>
+                    </div>
+                    
+                    <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px;">
+                        <div style="font-size: 0.8rem; color: #888; margin-bottom: 10px; text-transform: uppercase;">Últimas Atualizações</div>
+                        <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <span>Tia Cláudia (2 adultos)</span>
+                            <span style="color: #27C93F;">Confirmado</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 10px 0;">
+                            <span>Primo João</span>
+                            <span style="color: #FFBD2E;">Pendente</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" style="padding: 0;">
+        <div class="gallery-grid">
+            <!-- 
+               ITEM 1: Gabi & João
+               Imagem 93
+            -->
+            <a href="https://gabiejoao.leanttro.com/" target="_blank" class="gallery-item">
+                <img src="https://res.cloudinary.com/dzcaxmbjn/image/upload/v1768746327/Design_sem_nome_93_kz0evj.png" alt="Casamento Gabi & João" class="gallery-img">
+                <div class="gallery-overlay">
+                    <h3 class="gallery-title">Gabi & João</h3>
+                    <div class="gallery-link-text">Clique para acessar <i class="fas fa-arrow-right" style="margin-left: 5px;"></i></div>
+                </div>
+            </a>
+            
+            <!-- 
+               ITEM 2: Madu (Aniversário)
+            -->
+            <a href="https://convitemadu.leanttro.com/" target="_blank" class="gallery-item">
+                <img src="https://res.cloudinary.com/dzcaxmbjn/image/upload/v1768746327/Design_sem_nome_92_iliddh.png" alt="1 Ano da Madu" class="gallery-img">
+                <div class="gallery-overlay">
+                    <h3 class="gallery-title">1 Ano da Madu</h3>
+                    <div class="gallery-link-text">Clique para acessar <i class="fas fa-arrow-right" style="margin-left: 5px;"></i></div>
+                </div>
+            </a>
+            
+            <!-- 
+               ITEM 3: Laís & Vitor
+               Imagem 91
+            -->
+            <a href="https://laisevitor.leanttro.com/" target="_blank" class="gallery-item">
+                <img src="https://res.cloudinary.com/dzcaxmbjn/image/upload/v1768748104/Design_sem_nome_91_bwogsp.png" alt="Bodas Laís & Vitor" class="gallery-img">
+                <div class="gallery-overlay">
+                    <h3 class="gallery-title">Laís & Vitor</h3>
+                    <div class="gallery-link-text">Clique para acessar <i class="fas fa-arrow-right" style="margin-left: 5px;"></i></div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <section id="configurador">
+        <div class="container">
+            <div class="text-center" style="margin-bottom: 5rem;" data-aos>
+                <h2 class="heading-lg">Configure seu Pacote</h2>
+                <p class="text-lead">Transparência total. Sem custos ocultos.</p>
+            </div>
+
+            <div class="calc-container" data-aos>
+                <!-- Left Panel -->
+                <div class="calc-info">
+                    <div class="calc-info-content">
+                        <div style="color: var(--gold-primary); font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 1rem;">// PACOTE BASE</div>
+                        <h2 style="font-size: 2.5rem; margin-bottom: 2rem;">CASAMENTO &<br>FESTA</h2>
+                        
+                        <ul class="list-check">
+                            <li><i class="fas fa-check"></i> RSVP (Confirmação)</li>
+                            <li><i class="fas fa-check"></i> Lista de Presentes (PIX)</li>
+                            <li><i class="fas fa-check"></i> Mapa e Contagem Regressiva</li>
+                            <li><i class="fas fa-check"></i> Galeria de Fotos Ilimitada</li>
+                            <li><i class="fas fa-server"></i> Infraestrutura Cloud</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="base-price-display">
+                        <div style="font-size: 0.8rem; color: #aaa; text-transform: uppercase; letter-spacing: 1px;">Investimento Inicial</div>
+                        <div style="font-size: 3rem; color: white; font-family: var(--font-display);">R$ 399,00</div>
+                        <div style="font-size: 0.8rem; color: var(--gold-primary);">*Prazo: 15 dias úteis</div>
+                    </div>
+                </div>
+
+                <!-- Right Panel (Controls) -->
+                <div class="calc-controls">
+                    <div style="margin-bottom: 3rem; color: #888; font-size: 0.9rem; letter-spacing: 1px;">// SELECIONE OS ADICIONAIS</div>
+
+                    <div class="option-row">
+                        <div class="option-details">
+                            <span class="option-title">Artes QR Code de Mesa</span>
+                            <span class="option-price">+R$ 100,00 (Setup)</span>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="check-qr" value="100" data-monthly="0" onchange="updateTotal()">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="option-row">
+                        <div class="option-details">
+                            <span class="option-title">Painel de Controle</span>
+                            <span style="font-size: 0.85rem; color: #777; display: block; margin-bottom: 5px;">Admin completo + Gestão Financeira</span>
+                            <span class="option-price">+R$ 200,00 (Setup)</span>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="check-admin" value="200" data-monthly="0" onchange="updateTotal()">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="option-row">
+                        <div class="option-details">
+                            <span class="option-title">Concierge IA</span>
+                            <span style="font-size: 0.85rem; color: #777; display: block; margin-bottom: 5px;">Chatbot Inteligente para convidados</span>
+                            <span class="option-price">+R$ 250,00 (Setup) + R$ 50,00/mês</span>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="check-ia" value="250" data-monthly="50" onchange="updateTotal()">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="total-area">
+                        <div class="total-line">
+                            Setup (Criação): <span id="display-setup" style="color: white;">R$ 399,00</span>
+                        </div>
+                        <div class="total-line">
+                            Manutenção: <span id="display-monthly" style="color: white;">R$ 29,90/mês</span>
+                        </div>
+                        <div class="total-line final">
+                            TOTAL SETUP <span id="display-total-big">R$ 399,00</span>
+                        </div>
+                        
+                        <button id="btn-contratar" class="btn btn-primary" style="width: 100%; margin-top: 2rem;">
+                            CONTRATAR AGORA
+                        </button>
+                        <p style="text-align: center; font-size: 0.75rem; color: #555; margin-top: 15px;">
+                            <i class="fas fa-lock"></i> Pagamento seguro. Início imediato.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <span class="footer-logo">LEANTTRO</span>
+            <p style="opacity: 0.4; font-size: 0.85rem;">
+                © 2026 Leanttro Digital Solutions.<br>Design de Experiências Digitais.
+            </p>
+            <div style="margin-top: 2rem; display: flex; justify-content: center; gap: 20px;">
+                <a href="#" style="color: #555; font-size: 1.2rem;"><i class="fab fa-instagram"></i></a>
+                <a href="#" style="color: #555; font-size: 1.2rem;"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- MOBILE MENU TOGGLE ---
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const btn = document.querySelector('.mobile-toggle i');
+            
+            if (menu.classList.contains('active')) {
+                menu.classList.remove('active');
+                btn.classList.remove('fa-times');
+                btn.classList.add('fa-bars');
+            } else {
+                menu.classList.add('active');
+                btn.classList.remove('fa-bars');
+                btn.classList.add('fa-times');
+            }
+        }
+
+        // --- LÓGICA DE ORÇAMENTO (MANTIDA) ---
+        const BASE_SETUP = 399.00;
+        const BASE_MONTHLY = 29.90;
+
+        function updateTotal() {
+            let totalSetup = BASE_SETUP;
+            let totalMonthly = BASE_MONTHLY;
+            let itemsSelected = [];
+
+            // Verifica QR Code
+            const checkQR = document.getElementById('check-qr');
+            if (checkQR.checked) {
+                totalSetup += parseFloat(checkQR.value);
+                itemsSelected.push("QR Code de Mesa");
+            }
+
+            // Verifica Admin
+            const checkAdmin = document.getElementById('check-admin');
+            if (checkAdmin.checked) {
+                totalSetup += parseFloat(checkAdmin.value);
+                itemsSelected.push("Painel Admin");
+            }
+
+            // Verifica IA (Soma Setup + Mensal)
+            const checkIA = document.getElementById('check-ia');
+            if (checkIA.checked) {
+                totalSetup += parseFloat(checkIA.value);
+                totalMonthly += parseFloat(checkIA.dataset.monthly);
+                itemsSelected.push("Concierge IA");
+            }
+
+            // Atualiza HTML
+            const fmt = (val) => val.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            
+            document.getElementById('display-setup').innerText = fmt(totalSetup);
+            document.getElementById('display-monthly').innerText = fmt(totalMonthly) + "/mês";
+            
+            const bigDisplay = document.getElementById('display-total-big');
+            if(bigDisplay) bigDisplay.innerText = fmt(totalSetup);
+
+            // Atualiza Link do WhatsApp
+            const btn = document.getElementById('btn-contratar');
+            const msg = `Olá! Gostaria de contratar o pacote Casamento & Festa.` + 
+                        (itemsSelected.length > 0 ? `\nAdicionais: ${itemsSelected.join(', ')}.` : ``) +
+                        `\n\nTotal Setup: R$ ${totalSetup}\nMensal: R$ ${totalMonthly}`;
+            
+            btn.onclick = function() {
+                window.open(`https://wa.me/5511976232235?text=${encodeURIComponent(msg)}`, '_blank');
+            };
+        }
+
+        updateTotal();
+
+        // --- ANIMATIONS ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('[data-aos]').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
