@@ -100,15 +100,24 @@
         }
         .header-inner { display: flex; justify-content: space-between; align-items: center; }
         
+        /* LOGO */
         .logo { 
-            font-family: var(--font-display); 
-            font-size: 1.5rem; 
-            color: white; 
             text-decoration: none; 
-            letter-spacing: 3px;
-            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        .logo span { color: var(--gold-primary); }
+        .logo img {
+            height: 32px;
+            width: auto;
+        }
+        .logo span { 
+            font-family: var(--font-display);
+            color: var(--gold-primary);
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
         
         /* Desktop Nav */
         .desktop-nav ul { display: flex; list-style: none; gap: 3rem; align-items: center; }
@@ -231,7 +240,7 @@
             border: 1px solid rgba(255,255,255,0.1);
             box-shadow: 0 0 50px rgba(0,0,0,0.5);
             display: block;
-            margin: 0 auto; /* ADICIONADO: Centraliza o bloco no Desktop */
+            margin: 0 auto;
         }
 
         /* --- FEATURES GRID --- */
@@ -441,7 +450,7 @@
         .list-check i { color: var(--gold-primary); margin-right: 15px; }
         
         /* ==========================================================================
-           CORREÇÕES DE RESPONSIVIDADE MOBILE (PRESERVADAS)
+           CORREÇÕES DE RESPONSIVIDADE MOBILE (ATUALIZADO)
            ========================================================================== 
         */
         @media (max-width: 900px) {
@@ -492,6 +501,8 @@
                 background-attachment: scroll; 
                 background-position: center top;
                 min-height: 100svh;
+                /* CORREÇÃO AQUI: Adiciona espaço no topo para o conteúdo descer e não ficar sob o header */
+                padding-top: 140px; 
             }
             .mockup-container { margin-top: 3rem; }
             
@@ -530,7 +541,10 @@
 
     <header>
         <div class="container header-inner">
-            <a href="#" class="logo">LEANTTRO <span>EVENTOS</span></a>
+            <a href="#" class="logo">
+                <img src="https://res.cloudinary.com/dzcaxmbjn/image/upload/v1768760696/Design_sem_nome_96_qwylws.png" alt="Leanttro">
+                <span>FESTAS E EVENTOS</span>
+            </a>
             
             <nav class="desktop-nav">
                 <ul>
