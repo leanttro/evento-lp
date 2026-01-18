@@ -34,7 +34,7 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; overflow-x: hidden; } /* Previne scroll horizontal indesejado */
+        html { scroll-behavior: smooth; overflow-x: hidden; }
 
         body {
             font-family: var(--font-body);
@@ -212,7 +212,7 @@
             text-transform: uppercase; 
             letter-spacing: 3px;
             display: inline-block;
-            margin: 0 5px 20px; /* Ajuste leve para evitar quebra feia */
+            margin: 0 5px 20px;
             background: rgba(0,0,0,0.5);
             backdrop-filter: blur(5px);
         }
@@ -231,6 +231,7 @@
             border: 1px solid rgba(255,255,255,0.1);
             box-shadow: 0 0 50px rgba(0,0,0,0.5);
             display: block;
+            margin: 0 auto; /* ADICIONADO: Centraliza o bloco no Desktop */
         }
 
         /* --- FEATURES GRID --- */
@@ -286,7 +287,6 @@
             opacity: 0.2; z-index: -1;
         }
 
-        /* Nova Classe para a Grid de Estatísticas (Substitui o inline style) */
         .stats-grid {
             display: grid; 
             grid-template-columns: 1fr 1fr 1fr; 
@@ -400,7 +400,7 @@
         
         .switch {
             position: relative; display: inline-block; width: 60px; height: 30px;
-            flex-shrink: 0; /* Impede que o switch seja esmagado */
+            flex-shrink: 0;
         }
         .switch input { opacity: 0; width: 0; height: 0; }
         .slider {
@@ -441,15 +441,15 @@
         .list-check i { color: var(--gold-primary); margin-right: 15px; }
         
         /* ==========================================================================
-           CORREÇÕES DE RESPONSIVIDADE MOBILE (ATUALIZADO)
+           CORREÇÕES DE RESPONSIVIDADE MOBILE (PRESERVADAS)
            ========================================================================== 
         */
         @media (max-width: 900px) {
             /* Typography Fixes */
             .heading-xl { 
-                font-size: 2.3rem; /* Reduzido para caber "EXPERIÊNCIA" */
+                font-size: 2.3rem; 
                 line-height: 1.2; 
-                letter-spacing: 0; /* IMPORTANTE: Remove espaçamento extra no mobile */
+                letter-spacing: 0; 
                 word-wrap: break-word;
             }
             .heading-lg { 
@@ -459,29 +459,29 @@
             
             /* Layout Adjustments */
             section { padding: 4rem 0; }
-            .container { padding: 0 1rem; /* Mais espaço útil lateral */ }
+            .container { padding: 0 1rem; }
             
             /* Admin Glass - Fix Cut Off */
             .admin-showcase { grid-template-columns: 1fr; }
             .admin-glass {
-                padding: 1.5rem; /* Reduzido de 30px para caber melhor */
+                padding: 1.5rem; 
                 width: 100%;
-                overflow: hidden; /* Garante que nada vaze */
+                overflow: hidden; 
             }
             
             /* Stats Grid Fix for Mobile */
             .stats-grid {
-                gap: 5px; /* Gap menor para não quebrar */
+                gap: 5px; 
             }
             .stat-box {
-                padding: 0.8rem 0.2rem; /* Padding interno menor */
+                padding: 0.8rem 0.2rem; 
             }
-            .stat-val { font-size: 1.4rem; } /* Números menores */
-            .stat-label { font-size: 0.6rem; letter-spacing: 0; } /* Texto menor */
+            .stat-val { font-size: 1.4rem; } 
+            .stat-label { font-size: 0.6rem; letter-spacing: 0; } 
 
             /* Feature Grid */
             .feature-grid {
-                grid-template-columns: 1fr; /* Força 1 coluna se necessário */
+                grid-template-columns: 1fr; 
             }
             
             .calc-container { grid-template-columns: 1fr; }
