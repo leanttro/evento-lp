@@ -284,7 +284,7 @@
             background: var(--bg-dark); 
             border-top: 1px solid #222; 
             padding-top: 4rem; 
-            padding-bottom: 4rem; /* Reduzido pela metade */
+            padding-bottom: 4rem; 
         }
         
         .admin-showcase {
@@ -418,7 +418,7 @@
         /* --- CALCULATOR --- */
         #configurador {
             background: linear-gradient(to bottom, #111, #000);
-            padding-top: 4rem; /* Reduzido pela metade */
+            padding-top: 4rem; 
             padding-bottom: 10rem;
         }
         
@@ -504,7 +504,32 @@
             background: #050505; color: #555; padding: 4rem 0;
             text-align: center; border-top: 1px solid #111;
         }
-        .footer-logo { font-family: var(--font-display); font-size: 2rem; color: #333; margin-bottom: 2rem; display: block;}
+        /* Adjusted footer logo styles */
+        .footer-logo-link {
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 2rem;
+            justify-content: center;
+            width: 100%;
+            transition: 0.3s;
+        }
+        .footer-logo-link:hover {
+            opacity: 0.8;
+            transform: translateY(-3px);
+        }
+        .footer-logo-link img {
+            height: 40px;
+            width: auto;
+        }
+        .footer-logo-link span {
+            font-family: var(--font-display);
+            color: var(--gold-primary);
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
 
         /* --- WHATSAPP FLOAT --- */
         .whatsapp-float {
@@ -928,6 +953,12 @@
                         <button id="btn-contratar" class="btn btn-primary" style="width: 100%; margin-top: 2rem;">
                             CONTRATAR AGORA
                         </button>
+                        
+                        <!-- BOTÃO FECHAR NO SITE ADICIONADO -->
+                        <a href="https://www.leanttro.com/" class="btn btn-outline" style="width: 100%; margin-top: 1rem; text-align: center; display: block; border-radius: 4px; padding: 1rem;">
+                            FECHAR NO SITE
+                        </a>
+                        
                         <p style="text-align: center; font-size: 0.75rem; color: #555; margin-top: 15px;">
                             <i class="fas fa-lock"></i> Pagamento seguro. Início imediato.
                         </p>
@@ -939,7 +970,20 @@
 
     <footer>
         <div class="container">
-            <span class="footer-logo">LEANTTRO</span>
+            <!-- LOGO COLORIDO NO RODAPÉ COMO BOTÃO -->
+            <a href="https://www.leanttro.com/" target="_blank" class="footer-logo-link">
+                <img src="https://res.cloudinary.com/dzcaxmbjn/image/upload/v1768760696/Design_sem_nome_96_qwylws.png" alt="Leanttro">
+                <span>FESTAS E EVENTOS</span>
+            </a>
+            
+            <!-- MENSAGEM SOBRE SERVIÇOS -->
+            <div style="margin-bottom: 2.5rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                <p style="color: var(--gold-primary); font-size: 1rem; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; margin-bottom: 10px;">Impulsione seu negócio com Tecnologia</p>
+                <p style="color: var(--text-dim); font-size: 0.95rem; line-height: 1.6;">
+                    Além de eventos inesquecíveis, desenvolvemos ecossistemas digitais de alta performance. Conheça nossos serviços de criação de sites institucionais premium, aplicativos personalizados e consultoria em tecnologia na Leanttro.
+                </p>
+            </div>
+
             <p style="opacity: 0.4; font-size: 0.85rem;">
                 © 2026 Leanttro Digital Solutions.<br>Design de Experiências Digitais.
             </p>
@@ -975,7 +1019,7 @@
         // --- DIRECTUS FORM SUBMISSION ---
         document.getElementById('leadForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            const btn = this.querySelector('button[type=\"submit\"]');
+            const btn = this.querySelector('button[type="submit"]');
             const originalText = btn.innerText;
             
             // UI Loading State
@@ -1001,7 +1045,7 @@
                 });
 
                 if (response.ok) {
-                    alert('Cadastro realizado com sucesso! Em breve entraremos em contato. Obrigado!');
+                    alert('Cadastro realizado com sucesso! Em breve entraremos em contato.');
                     this.reset();
                 } else {
                     const errorData = await response.json();
@@ -1062,8 +1106,8 @@
             // Atualiza Link do WhatsApp
             const btn = document.getElementById('btn-contratar');
             const msg = `Olá! Gostaria de contratar o pacote Casamento & Festa.` + 
-                        (itemsSelected.length > 0 ? `\\nAdicionais: ${itemsSelected.join(', ')}.` : ``) +
-                        `\\n\\nTotal Setup: R$ ${totalSetup}\\nMensal: R$ ${totalMonthly}`;
+                        (itemsSelected.length > 0 ? `\nAdicionais: ${itemsSelected.join(', ')}.` : ``) +
+                        `\n\nTotal Setup: R$ ${totalSetup}\nMensal: R$ ${totalMonthly}`;
             
             btn.onclick = function() {
                 window.open(`https://wa.me/5511976232235?text=${encodeURIComponent(msg)}`, '_blank');
@@ -1084,4 +1128,4 @@
         document.querySelectorAll('[data-aos]').forEach(el => observer.observe(el));
     </script>
 </body>
-</html> 
+</html>
